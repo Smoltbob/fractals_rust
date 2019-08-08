@@ -138,7 +138,7 @@ where
             let mu = pixels[i as usize] as f64;
             let ix = match histogram.binary_search_by(|a| a.partial_cmp(&mu).unwrap()) {
                 Ok(v) => v as u32,
-                Err(e) => 0, // bad error handling. Return -1 and check later?
+                Err(e) => std::cmp::min(e, (img.imgx * img.imgy) as usize - 1) as u32,
             };
             let mut grey = 0.0;
             if interior <= ix {
@@ -179,6 +179,7 @@ fn main() {
     let mut frac = mandel;
 
     // recenter and zoom
+    // the "normal" plot for Mandelbrot is new_ctr = (-0.75, 0) and zoom = 1.0
     let new_ctr = (-0.787, 0.25);
     let zoom = 100.0;
     frac.recenter(new_ctr);

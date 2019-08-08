@@ -6,19 +6,18 @@ extern crate rayon;
 
 use rayon::prelude::*;
 
-/* Represents the output image resolution */
+/// Represents the output image resolution
 struct Image{
     imgx: u32,
     imgy: u32,
 }
 
-/* We define a Fractal struct for defining new
- * fractal equations easily.
- * - rangex : the range of the fractal in the real axis
- * - rangey : the range of the fractal on the complex axis
- * - equation : a closure defining the fractal equation
- * - max_iter : the maximum amount of iterations allowed per pixel
- */
+/// We define a Fractal struct for defining new
+/// fractal equations easily.
+/// - rangex : the range of the fractal in the real axis
+///- rangey : the range of the fractal on the complex axis
+/// - equation : a closure defining the fractal equation
+/// - max_iter : the maximum amount of iterations allowed per pixel
 struct Fractal <T>
     where T: Fn(num_complex::Complex<f64>, num_complex::Complex<f64>
                 ) -> num_complex::Complex<f64> + Sync
@@ -29,9 +28,8 @@ struct Fractal <T>
     max_iter: u32,
 }
 
-/* Helper functions for recentering and zooming on the fractal. 
- * Works by adding offsets or scaling to the ranges 
- */
+/// Helper functions for recentering and zooming on the fractal. 
+///  Works by adding offsets or scaling to the ranges 
 impl <T> Fractal <T>
     where T: Fn(num_complex::Complex<f64>, num_complex::Complex<f64>
                 ) -> num_complex::Complex<f64> + Sync
@@ -58,9 +56,8 @@ impl <T> Fractal <T>
     }
 }
 
-/* For a given fractal and minimum size in pixels, returns an image 
- * struct of the correct aspect ratio
- */
+/// For a given fractal and minimum size in pixels, returns an image 
+/// struct of the correct aspect ratio
 fn make_image<T>(frac: &Fractal<T>, min_size: u32) -> Image
     where T: Fn(num_complex::Complex<f64>, num_complex::Complex<f64>
                 ) -> num_complex::Complex<f64> + Sync
@@ -79,11 +76,11 @@ fn make_image<T>(frac: &Fractal<T>, min_size: u32) -> Image
         }
     }
 
-/* Generates the fractal
- * Uses an histogram equalization technique involving 
- * sorting the image pixels (with quicksort) and then looking
- * through it (with binary search).
- * Complexity : (n^2 log(n)), n = side of the image */
+/// Generates the fractal
+/// Uses an histogram equalization technique involving 
+/// sorting the image pixels (with quicksort) and then looking
+/// through it (with binary search).
+/// Complexity : (n^2 log(n)), n = side of the image */
 fn true_hist <T> (img: Image, frac: Fractal<T>) 
     // Is there any way to avoid copy / pasting this all the time ?
     where T: Fn(num_complex::Complex<f64>, num_complex::Complex<f64>

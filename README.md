@@ -6,7 +6,7 @@ For now this supports :
 - Custom resolution
 - The Mandelbrot and Tricorn fractals
 
-It uses the histogram equalization algorithm.
+It uses the histogram equalization algorithm [2].
 The algorithm is roughly the following :
 
 ```
@@ -26,6 +26,8 @@ Improvement idea : instead of a vector for the histogram, use a Hashmap storing 
 
 ### References
 [1] https://en.wikipedia.org/wiki/Mandelbrot_set#Continuous_(smooth)_coloring
+
+[2] http://www.fractalforums.com/kalles-fraktaler/histogram-colouring-is-really-streching-(not-true-histogram)/
 
 ### Acknowledgements
 Thanks to 

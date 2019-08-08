@@ -23,3 +23,6 @@ Tip : when doing big zooms, increase the iteration count to have sharper images.
 To run : `cargo run --release`
 
 Improvement idea : instead of a vector for the histogram, use a Hashmap storing (iteration count, number of pixels) (ie an actual histogram). We may have to do some bining and thus reduce the color resolution though. However that would put the lookup time from O(log(n)) (binary search) to O(1) while reducing memory usage (depending on the size of the bins)
+
+### References
+[1] https://en.wikipedia.org/wiki/Mandelbrot_set#Continuous_(smooth)_coloring

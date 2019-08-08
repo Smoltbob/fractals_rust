@@ -26,3 +26,13 @@ Improvement idea : instead of a vector for the histogram, use a Hashmap storing 
 
 ### References
 [1] https://en.wikipedia.org/wiki/Mandelbrot_set#Continuous_(smooth)_coloring
+
+### Acknowledgements
+Thanks to 
+
+- u/YngvarrGregorios
+- u/tim_vermeulen
+- u/harvey_bird_person
+- u/SV-97
+
+For their advice in my [reddit post](https://www.reddit.com/r/rust/comments/cncd2v/my_first_rust_project_a_parallel_fractal_renderer/).
